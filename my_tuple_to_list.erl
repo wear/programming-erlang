@@ -1,5 +1,8 @@
 -module (my_tuple_to_list).
--export ([cover/1, test/0]).
+-export ([cover/1, start/0]).
+
+start() ->
+  io:format("started").
 
 cover([]) -> [];
 cover(Tuple) ->
