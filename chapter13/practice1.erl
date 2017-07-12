@@ -1,4 +1,4 @@
--module (chapter13).
+-module (practice1).
 -export ([own_spawn/3, own_spawn/4]).
 
 % chapter13:own_spawn(testing, start, []).
