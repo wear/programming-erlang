@@ -77,7 +77,6 @@ job_revert(JobNumber) -> gen_server:call(?MODULE, {revert, JobNumber}).
 
 stat() -> gen_server:call(?MODULE, stat).
 
-
 % helper
 -type status() :: ?StatusPending | ?StatusTaken | ?StatusCompleted.
 -type status_stat() :: {status(), integer()}.
@@ -106,6 +105,7 @@ update_job(JobNumber, Status, Tab) ->
   [{JobNumber, _, F}] = ets:lookup(Tab, JobNumber),
   ets:insert(Tab, {JobNumber, Status, F}),
   ok.
+
 % tests
 test() ->
   start_link(),

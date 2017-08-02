@@ -16,11 +16,9 @@ rpc(Pid, Request) ->
     {Pid, Reponse} -> Reponse
   end.
 
-loop(Job) ->
+loop({JobNumber, Time, F}) ->
   receive
     {From, done} ->
-      {JobNumber, F} = Job,
-
       try F() of
         Result ->
           job_done(JobNumber),
@@ -28,7 +26,9 @@ loop(Job) ->
       catch
         _:_ -> exit(JobNumber)
       end,
-      done
+      done;
+    hurry_up ->
+      io:format("~p need hurry up.~n", [JobNumber])
   end.
 
 test() ->

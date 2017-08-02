@@ -5,7 +5,7 @@
 
 ERL = erl -boot start_clean
 
-MODS = job_center3 worker3 company
+MODS = job_center4 worker4
 
 all: compile
 
