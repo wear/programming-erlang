@@ -1,3 +1,21 @@
-.container{
-  margin-top: 10px;
+.navbar{
+  margin-top: 20px;
+  margin: 20px;
+}
+
+.justify-content-md-center{
+  justify-content: center !important;
+}
+
+.jumbotron{
+  padding: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  background-color: #e9ecef;
+  border-radius: .3rem
+}
+
+.messages{
+  overflow-y: scroll;
+  min-height: 20em;
 }

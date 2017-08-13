@@ -18,7 +18,9 @@ start(_StartType, _StartArgs) ->
   Dispatch = cowboy_router:compile([
     {'_', [
       {"/", cowboy_static, {priv_file, chapter18, "index.html"}},
-      {"/clock", ws_handler, []},
+      {"/irc", cowboy_static, {priv_file, chapter18, "irc.html"}},
+      {"/clock", ws_handler, #{mod => clock}},
+      {"/chat", ws_handler, #{mod => chat}},
       {"/static/[...]", cowboy_static, {priv_dir, chapter18, "static"}}
     ]}
   ]),

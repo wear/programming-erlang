@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IRC</title>
+  <link rel="stylesheet" type="text/css" href="./static/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./static/main.css">
+</head>
+<body>
+  <div class='container'>
+    <nav class='navbar navbar-expand-lg navbar-light bg-light rounded'>
+      <a href="/" class='navbar-brand'>Chapter18</a>
+      <button class='navbar-toggler'></button>
+      <div class='collapse navbar-collapse justify-content-md-center'>
+        <ul class='navbar-nav mr-auto'>
+          <li class='nav-item'>
+            <a href="/" class='nav-link'>Clock</a>
+          </li>
+          <li class='nav-item active'>
+            <a href="/irc" class='nav-link'>IRC</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <form class="form-inline" id='join'>
+      <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="user-name">
+      <button type="submit" class="btn btn-primary">Join</button>
+    </form>
+    <div class="jumbotron">
+    <div class='row'>
+      <div class="card col-9">
+        <div class="card-body messages">
+        </div>
+      </div>
+      <div class="card col-2 ml-auto">
+        <div class="card-body users">
+        </div>
+      </div>
+    </div>
+    </div>
+    <form id='message'>
+      <div class="form-group">
+        <input type="text" class="form-control" id="msg">
+      </div>
+    </form>
+  </div>
+  <script src='./static/jquery-3.2.1.min.js'></script>
+  <script src='./static/ws.js'></script>
+  <script type="text/javascript">
+    init("chat");
+
+    window.ws.onmessage = function(e) {
+      var message = JSON.parse(e.data);
+      switch(message['cmd']){
+        case 'join':
+          $('.users').append(message['body'] + "<br>");
+          $('.messages').append(message['body'] + " join the room! <br>");
+          break;
+        case 'speak':
+          $('.messages').append("> " + message['body'] + "<br>");
+          break;
+      }
+    }
+  </script>
+</body>
+</html>

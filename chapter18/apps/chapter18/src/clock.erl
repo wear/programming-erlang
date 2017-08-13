@@ -1,4 +1,4 @@
--module (clock1).
+-module (clock).
 -export ([start/1, current_time/0]).
 
 start(Broswer) ->
@@ -7,7 +7,7 @@ start(Broswer) ->
 
 running(Broswer) ->
   receive
-    {Broswer, <<"stop">> } ->
+    {Broswer, {<<"click">>,<<"stop">>}} ->
       idle(Broswer)
   after 1000 ->
     Broswer ! { update_time, current_time() },
@@ -16,7 +16,7 @@ running(Broswer) ->
 
 idle(Broswer) ->
   receive
-    {Broswer, <<"start">> } ->
+    {Broswer, {<<"click">>,<<"start">>} } ->
       running(Broswer)
   end.
 

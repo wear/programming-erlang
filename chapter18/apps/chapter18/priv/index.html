@@ -7,9 +7,24 @@
 </head>
 <body>
   <div class='container'>
+    <nav class='navbar navbar-expand-lg navbar-light bg-light rounded'>
+      <a href="/" class='navbar-brand'>Chapter18</a>
+      <button class='navbar-toggler'></button>
+      <div class='collapse navbar-collapse justify-content-md-center'>
+        <ul class='navbar-nav mr-auto'>
+          <li class='nav-item active'>
+            <a href="/" class='nav-link'>Clock</a>
+          </li>
+          <li class='nav-item'>
+            <a href="/irc" class='nav-link'>IRC</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="alert alert-primary tips" role="alert">
+    </div>
     <div class="jumbotron">
       <p class="display-4 message"></p>
-      <p class='lead tips'></p>
       <hr class="my-4">
       <p class="lead">
         <button class="btn btn-primary btn-lg action-item" role="button">Stop</button>
@@ -19,5 +34,12 @@
   </div>
   <script src='./static/jquery-3.2.1.min.js'></script>
   <script src='./static/ws.js'></script>
+  <script type="text/javascript">
+    init("clock");
+
+    window.ws.onmessage = function(e) {
+      $('.message').text(e.data);
+    }
+  </script>
 </body>
 </html>
